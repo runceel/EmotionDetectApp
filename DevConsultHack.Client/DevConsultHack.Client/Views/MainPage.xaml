@@ -20,11 +20,12 @@
                       IsVisible="{Binding HasEmotionResult}"
                       VerticalOptions="Center">
                     <Frame BackgroundColor="LightPink"
-                           Opacity="0.7"
+                           Opacity="0.3"
                            Margin="10">
                     </Frame>
                     <Label Text="{Binding EmotionResult}"
                            HorizontalOptions="Center"
+                           VerticalOptions="Center"
                            Margin="15" />
                 </Grid>
             </Grid>
