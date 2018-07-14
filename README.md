@@ -14,3 +14,10 @@
 ## How does it work
 
 ![Demo](images/demo.gif)
+
+## Know issues
+
+- UWP
+    - Header of NavigationPage isn't displayed.
+- iOS
+    - I don't have a macOS device now.
