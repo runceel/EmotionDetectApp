@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
+             xmlns:controls="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             xmlns:localControls="clr-namespace:DevConsultHack.Client.Controls"
+             prism:ViewModelLocator.AutowireViewModel="True"
+             x:Class="DevConsultHack.Client.Views.HistoryPage"
+             Title="{Binding Title}">
+    <Grid>
+        <localControls:IncrementalLoadingListView ItemsSource="{Binding Transactions}"
+                                                  SelectionMode="None"
+                                                  LoadMoreCommand="{Binding LoadMoreHistoriesCommand}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <controls:CachedImage Source="{Binding Path}"
+                                                  WidthRequest="60"
+                                                  HeightRequest="60"
+                                                  Margin="2.5"
+                                                  Aspect="AspectFill"
+                                                  Grid.Row="0"
+                                                  Grid.Column="0"
+                                                  Grid.RowSpan="2" />
+                            <Label Text="{Binding Emotion}"
+                                   Grid.Column="1" />
+                            <Label Text="{Binding Timestamp, StringFormat='{}{0:MM/dd/yyyy HH:mm:ss}'}"
+                                   HorizontalOptions="End"
+                                   Margin="5,0"
+                                   FontSize="Small"
+                                   Grid.Column="1"
+                                   Grid.Row="1" />
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </localControls:IncrementalLoadingListView>
+        <ActivityIndicator IsVisible="{Binding IsLoading}"
+                           IsRunning="True"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+    </Grid>
+</ContentPage>

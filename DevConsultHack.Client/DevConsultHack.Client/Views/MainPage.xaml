@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="DevConsultHack.Client.Views.MainPage"
+             xmlns:prism="clr-namespace:Prism.Navigation.Xaml;assembly=Prism.Forms"
+             NavigationPage.HasNavigationBar="True"
+             Title="{Binding Title}">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Histories"
+                     Command="{prism:NavigateTo 'HistoryPage'}" />
+    </ContentPage.ToolbarItems>
+
+    <Grid>
+        <StackLayout VerticalOptions="FillAndExpand">
+            <Label Text="Let's detect your emotion!"
+                   HorizontalOptions="Center" />
+            <Grid VerticalOptions="FillAndExpand">
+                <Image Source="{Binding LatestPicture}" />
+                <Grid HorizontalOptions="FillAndExpand"
+                      IsVisible="{Binding HasEmotionResult}"
+                      VerticalOptions="Center">
+                    <Frame BackgroundColor="LightPink"
+                           Opacity="0.7"
+                           Margin="10">
+                    </Frame>
+                    <Label Text="{Binding EmotionResult}"
+                           HorizontalOptions="Center"
+                           Margin="15" />
+                </Grid>
+            </Grid>
+            <Button Text="Take photo"
+                    Command="{Binding TakePhotoCommand}"
+                    VerticalOptions="End" />
+        </StackLayout>
+        <ActivityIndicator IsVisible="{Binding IsLoading}"
+                           IsRunning="True"
+                           HorizontalOptions="Center"
+                           VerticalOptions="Center" />
+    </Grid>
+</ContentPage>
